@@ -6,29 +6,29 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
-   <children>
-      <SplitPane dividerPositions="0.7374581939799331" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="586.0">
-               <children>
-                  <MenuButton maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Graph type" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="4.0">
-                    <items>
-                      <MenuItem mnemonicParsing="false" onAction="#loadErrors" text="LocalErrors" />
-                        <MenuItem mnemonicParsing="false" text="Runge–Kutta method" />
-                      <MenuItem mnemonicParsing="false" onAction="#loadSolutions" text="Solutions" />
-                    </items>
-                  </MenuButton>
-                  <AnchorPane fx:id="root" layoutX="14.0" layoutY="44.0" prefHeight="341.0" prefWidth="558.0" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="306.0" prefWidth="546.0">
-               <children>
-                  <Button layoutX="89.0" layoutY="358.0" mnemonicParsing="false" text="Initial conditions" AnchorPane.bottomAnchor="14.799999999999955" AnchorPane.rightAnchor="14.199999999999989" />
-                  <Button layoutX="89.0" layoutY="322.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="Apply changes" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="14.199999999999989" />
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.MainController">
+    <SplitPane dividerPositions="0.7374581939799331" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="586.0">
+            <MenuButton maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0"
+                        prefWidth="120.0" text="Graph type" AnchorPane.leftAnchor="4.0"
+                        AnchorPane.topAnchor="4.0">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#loadSolutions" text="Solutions"/>
+                    <MenuItem mnemonicParsing="false" text="Runge–Kutta method"/>
+                    <MenuItem mnemonicParsing="false" onAction="#loadErrors" text="Errors"/>
+                </items>
+            </MenuButton>
+            <AnchorPane fx:id="root" layoutX="14.0" layoutY="44.0" prefHeight="341.0" prefWidth="558.0"/>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="306.0" prefWidth="546.0">
+            <Button layoutX="89.0" layoutY="358.0" mnemonicParsing="false" text="Initial conditions"
+                    AnchorPane.bottomAnchor="14.799999999999955" AnchorPane.rightAnchor="14.199999999999989"/>
+            <Button layoutX="89.0" layoutY="322.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0"
+                    text="Apply changes" AnchorPane.bottomAnchor="50.0"
+                    AnchorPane.rightAnchor="14.199999999999989"/>
+        </AnchorPane>
+    </SplitPane>
 </AnchorPane>

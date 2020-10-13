@@ -14,7 +14,6 @@ public class Main extends Application {
     public Stage primaryStage;
     private Parent root;
     public MainController appController;
-    public SolutionGraphsController solutionController;
     public Scene mainScene;
 
     @Override
@@ -27,12 +26,6 @@ public class Main extends Application {
         appController = loader.getController();
         appController.setMain(this);
 
-
-        FXMLLoader loader1 = new FXMLLoader();
-        loader1.setLocation(Main.class.getResource("SolutionGraphs.fxml"));
-        loader1.load();
-        solutionController = loader1.getController();
-        solutionController.setMain(this);
         mainScene = new Scene(root, 800, 400);
         primaryStage.setScene(mainScene);
         primaryStage.show();

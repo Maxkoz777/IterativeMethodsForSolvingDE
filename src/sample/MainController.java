@@ -1,47 +1,33 @@
 package sample;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.geometry.Insets;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.layout.AnchorPane;
 import sample.model.methods.EulerMethod;
-
-import java.io.IOException;
 
 public class MainController {
     // Anchor pane for plotting charts
     @FXML
     AnchorPane root;
 
+    LineChart<Number, Number> solutionChart;
+
     private Main main;
 
     /**
      * shows solution graph with all lines
-     *
-     * @param actionEvent
      */
 
-    public void loadSolutions(ActionEvent actionEvent) {
-        try {
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("SolutionGraphs.fxml"));
-            plotGraphs(main.solutionController.getGraph());
-            root.getChildren().setAll(anchorPane);
-            boolean flag = main.solutionController.getGraph().isVisible();
-            main.primaryStage.setScene(main.mainScene);
-            //main.primaryStage.setScene(new Scene(main.solutionController.getGraph()));
-            main.primaryStage.show();
+    public void loadErrors() {
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
      * creates link to main app
      *
-     * @param main
+     * @param main is a reference to main app
      */
 
     public void setMain(Main main) {
@@ -60,17 +46,21 @@ public class MainController {
 
     /**
      * shows error graph
-     *
-     * @param actionEvent
      */
 
-    public void loadErrors(ActionEvent actionEvent) {
-        try {
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("LocalErrors.fxml"));
-            root.getChildren().setAll(anchorPane);
+    public void loadSolutions() {
+        solutionChart.setVisible(true);
+        plotGraphs(solutionChart);
+        root.getChildren().setAll(solutionChart);
+    }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void initialize() {
+        final NumberAxis xAxis = new NumberAxis();
+        xAxis.setLabel("x");
+        final NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("y");
+        solutionChart = new LineChart<>(xAxis, yAxis);
+        solutionChart.setPadding(new Insets(15));
+        solutionChart.setTitle("Solutions");
     }
 }
