@@ -14,7 +14,7 @@
                <children>
                   <MenuButton maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Graph type" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="4.0">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Improved Euler method" />
+                      <MenuItem mnemonicParsing="false" onAction="#loadErrors" text="LocalErrors" />
                         <MenuItem mnemonicParsing="false" text="Runge–Kutta method" />
                       <MenuItem mnemonicParsing="false" onAction="#loadSolutions" text="Solutions" />
                     </items>

@@ -7,9 +7,14 @@ import sample.model.Coordinate;
 import sample.model.storage.Storage;
 
 public abstract class IterativeMethod {
-    private Storage storage = new ArrayStorage();
-    private double c, x0, y0, _X, h;
-    private String name;
+    Storage storage = new ArrayStorage();
+    double c, x0, y0, _X, h, step;
+    String name;
+
+    /**
+     * initially puts given numbers to all variables
+     * @param methodName is responsible for name of method
+     */
 
     public IterativeMethod(MethodName methodName) {
         this.name = methodName.name();
@@ -17,12 +22,23 @@ public abstract class IterativeMethod {
         x0 = 1;
         y0 = 0;
         _X = 8;
-        h = 10;
+        step = 7;
+        h = Math.abs(_X - x0) / step;
     }
+
+    /**
+     * fills storage with proper coordinates according to chosen method
+     */
 
     abstract void fullFillStorage();
 
-    XYChart.Series<Number, Number> getLineChart(){
+    /**
+     *
+     * @return series that could be added to graph
+     */
+
+    public XYChart.Series<Number, Number> getLineChart(){
+        fullFillStorage();
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
         series.setName(name);
         for (Coordinate pair : storage.getCoordinates()){
