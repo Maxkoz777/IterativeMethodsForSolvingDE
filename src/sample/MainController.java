@@ -128,6 +128,12 @@ public class MainController {
     }
 
     public void setInitialValues() {
-
+        eulerMethod = new EulerMethod();
+        improvedEulerMethod = new ImprovedEulerMethod();
+        exactMethod = new ExactMethod();
+        rungeKuttaMethod = new RungeKuttaMethod();
+        solutionChart.getData().clear();
+        errorChart.getData().clear();
+        setDataOnCharts();
     }
 }
