@@ -52,12 +52,14 @@ public class MainController {
      * @param chart is a Line Chart where graphs will be plotted
      */
     public void plotGraphs(LineChart<Number, Number> chart) {
-        chart.getData().removeAll();
-        EulerMethod eulerMethod = new EulerMethod();
-        ImprovedEulerMethod improvedEulerMethod = new ImprovedEulerMethod();
-        ExactMethod exactMethod = new ExactMethod();
-        RungeKuttaMethod rungeKuttaMethod = new RungeKuttaMethod();
-        chart.getData().addAll(eulerMethod.getLineChart(), improvedEulerMethod.getLineChart(), exactMethod.getLineChart(), rungeKuttaMethod.getLineChart());
+        updateValues();
+    }
+
+    public void updateValues(){
+        eulerMethod = new EulerMethod();
+        improvedEulerMethod = new ImprovedEulerMethod();
+        exactMethod = new ExactMethod();
+        rungeKuttaMethod = new RungeKuttaMethod();
     }
 
     /**
@@ -69,6 +71,10 @@ public class MainController {
         errorChart.setVisible(false);
         plotGraphs(solutionChart);
         root.getChildren().setAll(solutionChart);
+    }
+
+    private void createCharts(){
+        solutionChart.getData().addAll(eulerMethod.getLineChart(), improvedEulerMethod.getLineChart(), exactMethod.getLineChart(), rungeKuttaMethod.getLineChart());
     }
 
     public void initialize() {
@@ -91,5 +97,6 @@ public class MainController {
         errorChart = new LineChart<>(xAxis1, yAxis1);
         errorChart.setTitle("Errors");
         errorChart.setPadding(new Insets(0, 0, 50, 0));
+        createCharts();
     }
 }
