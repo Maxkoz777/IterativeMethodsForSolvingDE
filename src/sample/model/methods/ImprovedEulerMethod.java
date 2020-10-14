@@ -1,14 +1,29 @@
 package sample.model.methods;
 
+import sample.model.Coordinate;
 import sample.model.MethodName;
 
-public class ImprovedEulerMethod extends IterativeMethod{
+import java.util.ArrayList;
+
+public class ImprovedEulerMethod extends Method {
     public ImprovedEulerMethod() {
         super(MethodName.IMPROVED_EULER);
     }
 
     @Override
-    void fullFillStorage() {
-
+    public void fullFillStorage() {
+        ArrayList<Coordinate> coordinates = new ArrayList<>();
+        coordinates.add(new Coordinate(x0, y0));
+        // px - previous value of x, so no need to go through storage for finding it
+        // so complexity is O(n), but not O(n^2), so does py
+        double px = x0, py = y0;
+        for (int i = 1; i < step; i++) {
+            double x = px + h;
+            double y = py + h * f(px + h/2, py + h / 2 * f(px, py));
+            coordinates.add(new Coordinate(x, y));
+            px = x;
+            py = y;
+        }
+        storage.setCoordinates(coordinates);
     }
 }

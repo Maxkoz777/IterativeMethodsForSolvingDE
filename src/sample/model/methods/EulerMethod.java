@@ -1,12 +1,11 @@
 package sample.model.methods;
 
-import com.sun.javafx.collections.MappingChange;
 import sample.model.Coordinate;
 import sample.model.MethodName;
 
 import java.util.ArrayList;
 
-public class EulerMethod extends IterativeMethod{
+public class EulerMethod extends Method {
     public EulerMethod() {
         super(MethodName.EULER);
     }
@@ -20,7 +19,7 @@ public class EulerMethod extends IterativeMethod{
         double px = x0, py = y0;
         for (int i = 1; i < step; i++) {
             double x = px + h;
-            double y = py + h * (py / px - px * Math.exp(py/px));
+            double y = py + h * f(px, py);
             coordinates.add(new Coordinate(x, y));
             px = x;
             py = y;
