@@ -28,6 +28,15 @@ public abstract class Method {
 
     public Method(ComputationalConditions conditions) {
         this.conditions = conditions;
+        if (EulerMethod.class.equals(this.getClass())) {
+            name = MethodName.EULER.name();
+        } else if (ImprovedEulerMethod.class.equals(this.getClass())) {
+            name = MethodName.IMPROVED_EULER.name();
+        } else if (RungeKuttaMethod.class.equals(this.getClass())) {
+            name = MethodName.RUNGE_KUTTA.name();
+        } else {
+            name = MethodName.COMMON.name();
+        }
     }
 
     public double f(double x, double y){

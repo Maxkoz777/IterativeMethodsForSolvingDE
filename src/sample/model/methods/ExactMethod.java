@@ -1,5 +1,6 @@
 package sample.model.methods;
 
+import sample.model.ComputationalConditions;
 import sample.model.Coordinate;
 import sample.model.MethodName;
 
@@ -11,8 +12,14 @@ public class ExactMethod extends Method{
         super(MethodName.COMMON);
     }
 
+    public ExactMethod(ComputationalConditions conditions) {
+        super(conditions);
+        fullFillStorage();
+    }
+
     @Override
     void fullFillStorage() {
+        storage.clear();
         ArrayList<Coordinate> coordinates = new ArrayList<>();
         coordinates.add(new Coordinate(conditions.getX0(), conditions.getY0()));
         for (int i = 1; i < conditions.getStep(); i++) {

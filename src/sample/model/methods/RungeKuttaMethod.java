@@ -1,5 +1,6 @@
 package sample.model.methods;
 
+import sample.model.ComputationalConditions;
 import sample.model.Coordinate;
 import sample.model.MethodName;
 
@@ -10,8 +11,14 @@ public class RungeKuttaMethod extends Method {
         super(MethodName.RUNGE_KUTTA);
     }
 
+    public RungeKuttaMethod(ComputationalConditions conditions) {
+        super(conditions);
+        fullFillStorage();
+    }
+
     @Override
     public void fullFillStorage() {
+        storage.clear();
         ArrayList<Coordinate> coordinates = new ArrayList<>();
         double px = conditions.getX0(), py = conditions.getY0(), h = conditions.getH();
         coordinates.add(new Coordinate(px, py));

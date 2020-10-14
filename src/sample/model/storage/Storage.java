@@ -15,4 +15,8 @@ public abstract class Storage {
     public void setCoordinates(List<Coordinate> coordinates) {
         this.coordinates = coordinates;
     }
+
+    public void clear(){
+        coordinates.clear();
+    }
 }
