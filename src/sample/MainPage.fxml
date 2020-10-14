@@ -17,7 +17,6 @@
                         AnchorPane.topAnchor="4.0">
                 <items>
                     <MenuItem mnemonicParsing="false" onAction="#loadSolutions" text="Solutions"/>
-                    <MenuItem mnemonicParsing="false" text="Runge–Kutta method"/>
                     <MenuItem mnemonicParsing="false" onAction="#loadErrors" text="Errors"/>
                 </items>
             </MenuButton>

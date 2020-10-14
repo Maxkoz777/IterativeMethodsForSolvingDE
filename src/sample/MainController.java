@@ -2,8 +2,7 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.*;
 import javafx.scene.layout.AnchorPane;
 import sample.model.methods.EulerMethod;
 import sample.model.methods.ExactMethod;
@@ -21,7 +20,7 @@ public class MainController {
     RungeKuttaMethod rungeKuttaMethod;
 
     LineChart<Number, Number> solutionChart;
-    LineChart<Number, Number> errorChart;
+    BarChart<String, Number> errorChart;
 
     private Main main;
 
@@ -51,7 +50,7 @@ public class MainController {
      *
      * @param chart is a Line Chart where graphs will be plotted
      */
-    public void plotGraphs(LineChart<Number, Number> chart) {
+    public void plotGraphs(XYChart<Number, Number> chart) {
         updateValues();
     }
 
@@ -75,6 +74,7 @@ public class MainController {
 
     private void createCharts(){
         solutionChart.getData().addAll(eulerMethod.getLineChart(), improvedEulerMethod.getLineChart(), exactMethod.getLineChart(), rungeKuttaMethod.getLineChart());
+        errorChart.getData().addAll(eulerMethod.getBarChart(exactMethod), improvedEulerMethod.getBarChart(exactMethod), rungeKuttaMethod.getBarChart(exactMethod));
     }
 
     public void initialize() {
@@ -82,19 +82,20 @@ public class MainController {
         improvedEulerMethod = new ImprovedEulerMethod();
         exactMethod = new ExactMethod();
         rungeKuttaMethod = new RungeKuttaMethod();
+
         final NumberAxis xAxis = new NumberAxis();
         xAxis.setLabel("x");
         final NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("y");
         solutionChart = new LineChart<>(xAxis, yAxis);
         solutionChart.setPadding(new Insets(0, 0, 50, 0));
-
         solutionChart.setTitle("Solutions");
-        final NumberAxis xAxis1 = new NumberAxis();
+
+        final CategoryAxis xAxis1 = new CategoryAxis();
         xAxis.setLabel("x");
         final NumberAxis yAxis1 = new NumberAxis();
-        yAxis.setLabel("y");
-        errorChart = new LineChart<>(xAxis1, yAxis1);
+        yAxis.setLabel("errors");
+        errorChart = new BarChart<>(xAxis1, yAxis1);
         errorChart.setTitle("Errors");
         errorChart.setPadding(new Insets(0, 0, 50, 0));
         createCharts();

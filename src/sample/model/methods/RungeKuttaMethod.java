@@ -13,11 +13,12 @@ public class RungeKuttaMethod extends Method {
     @Override
     public void fullFillStorage() {
         ArrayList<Coordinate> coordinates = new ArrayList<>();
-        coordinates.add(new Coordinate(x0, y0));
+        double px = conditions.getX0(), py = conditions.getY0(), h = conditions.getH();
+        coordinates.add(new Coordinate(px, py));
         // px - previous value of x, so no need to go through storage for finding it
         // so complexity is O(n), but not O(n^2), so does py
-        double px = x0, py = y0;
-        for (int i = 1; i < step; i++) {
+
+        for (int i = 1; i < conditions.getStep(); i++) {
             double x = px + h;
             double k1 = f(px, py);
             double k2 = f(px + h / 2, py + h * k1 / 2);

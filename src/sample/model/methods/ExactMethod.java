@@ -14,10 +14,10 @@ public class ExactMethod extends Method{
     @Override
     void fullFillStorage() {
         ArrayList<Coordinate> coordinates = new ArrayList<>();
-        coordinates.add(new Coordinate(x0, y0));
-        for (int i = 1; i < step; i++) {
-            double x = x0 + h * i;
-            coordinates.add(new Coordinate(x, -x * Math.log(x + c)));
+        coordinates.add(new Coordinate(conditions.getX0(), conditions.getY0()));
+        for (int i = 1; i < conditions.getStep(); i++) {
+            double x = conditions.getX0() + conditions.getH() * i;
+            coordinates.add(new Coordinate(x, -x * Math.log(x + conditions.getC())));
         }
         storage.setCoordinates(coordinates);
     }

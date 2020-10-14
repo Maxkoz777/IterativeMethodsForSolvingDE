@@ -1,6 +1,7 @@
 package sample.model.methods;
 
 import javafx.scene.chart.XYChart;
+import sample.model.ComputationalConditions;
 import sample.model.MethodName;
 import sample.model.storage.ArrayStorage;
 import sample.model.Coordinate;
@@ -9,12 +10,7 @@ import sample.model.storage.Storage;
 public abstract class Method {
     String name;
     Storage storage = new ArrayStorage();
-    double c;
-    double x0;
-    double y0;
-    double _X;
-    double h;
-    double step;
+    ComputationalConditions conditions;
 
     /**
      * initially puts given numbers to all variables
@@ -27,12 +23,11 @@ public abstract class Method {
     }
 
     public Method(){
-        c = 0;
-        x0 = 1;
-        y0 = 0;
-        _X = 8;
-        step = 7;
-        h = Math.abs(_X - x0) / step;
+        conditions = new ComputationalConditions();
+    }
+
+    public Method(ComputationalConditions conditions) {
+        this.conditions = conditions;
     }
 
     public double f(double x, double y){
@@ -50,6 +45,19 @@ public abstract class Method {
         series.setName(name);
         for (Coordinate pair : storage.getCoordinates()){
             series.getData().add(new XYChart.Data<>(pair.getX(), pair.getY()));
+        }
+        return series;
+    }
+
+    public XYChart.Series<String, Number> getBarChart(ExactMethod exactMethod){
+        fullFillStorage();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName(name);
+        for (int i = 0; i < conditions.getStep(); i++) {
+            double x = storage.getCoordinates().get(i).getX();
+            double y = storage.getCoordinates().get(i).getY();
+            double y0 = exactMethod.storage.getCoordinates().get(i).getY();
+            series.getData().add(new XYChart.Data<>("" + x, Math.abs(y - y0)));
         }
         return series;
     }
