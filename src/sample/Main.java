@@ -13,7 +13,9 @@ import java.io.IOException;
 public class Main extends Application {
     public Stage primaryStage;
     private Parent root;
+    private Parent dialogRoot;
     public MainController appController;
+    public ExceptionWindow exceptionWindow;
     public Scene mainScene;
 
     @Override
@@ -25,6 +27,12 @@ public class Main extends Application {
         root = loader.load();
         appController = loader.getController();
         appController.setMain(this);
+
+        FXMLLoader windowLoader = new FXMLLoader();
+        windowLoader.setLocation(Main.class.getResource("ExceptionWindow.fxml"));
+        dialogRoot = windowLoader.load();
+        exceptionWindow = windowLoader.getController();
+        exceptionWindow.setMain(this);
 
         mainScene = new Scene(root, 800, 400);
         primaryStage.setScene(mainScene);

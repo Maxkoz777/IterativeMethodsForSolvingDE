@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.chart.*;
@@ -59,22 +58,31 @@ public class MainController {
         this.main = main;
     }
 
-    public void updateValues(){
+    public void updateValues() {
         String x0, y0, _X, step;
         x0 = x0_changer.getText();
         y0 = y0_changer.getText();
         _X = X_changer.getText();
         step = step_changer.getText();
         if (!x0.equals("") && !y0.equals("") && !_X.equals("") && !step.equals("")){
-            ComputationalConditions computationalConditions = new ComputationalConditions(Double.parseDouble(x0), Double.parseDouble(y0), Double.parseDouble(_X), Double.parseDouble(step));
-            eulerMethod = new EulerMethod(computationalConditions);
-            improvedEulerMethod = new ImprovedEulerMethod(computationalConditions);
-            exactMethod = new ExactMethod(computationalConditions);
-            rungeKuttaMethod = new RungeKuttaMethod(computationalConditions);
-            solutionChart.getData().clear();
-            errorChart.getData().clear();
-            setDataOnCharts();
+            try {
+                ComputationalConditions computationalConditions = new ComputationalConditions(Double.parseDouble(x0), Double.parseDouble(y0), Double.parseDouble(_X), Double.parseDouble(step));
+                eulerMethod = new EulerMethod(computationalConditions);
+                improvedEulerMethod = new ImprovedEulerMethod(computationalConditions);
+                exactMethod = new ExactMethod(computationalConditions);
+                rungeKuttaMethod = new RungeKuttaMethod(computationalConditions);
+                solutionChart.getData().clear();
+                errorChart.getData().clear();
+                setDataOnCharts();
+            }
+            catch (NumberFormatException exception){
+                showIncorrectInputWindow();
+            }
         }
+    }
+
+    private void showIncorrectInputWindow() {
+        main.exceptionWindow.incorrectNumbers();
     }
 
     public void initializeGraphs(){
