@@ -4,7 +4,9 @@ public class ComputationalConditions {
     double x0;
     double y0;
     double _X;
-    double step;
+    int n0;
+    int N;
+    int step;
     double h;
     double c;
 
@@ -12,16 +14,20 @@ public class ComputationalConditions {
         x0 = 1;
         y0 = 0;
         _X = 8;
-        step = 7;
+        N = 7;
+        n0 = 1;
+        step = Math.abs(N);
         h = Math.abs(_X - x0) / step;
         c = 0;
     }
 
-    public ComputationalConditions(double x0, double y0, double _X, double step) {
+    public ComputationalConditions(double x0, double y0, double _X, int n0, int N) {
         this.x0 = x0;
         this.y0 = y0;
         this._X = _X;
-        this.step = step;
+        this.n0 = n0;
+        this.N = N;
+        this.step = Math.abs(N);
         h = Math.abs(_X - x0) / step;
         c = 0;
     }

@@ -25,6 +25,10 @@ public class MainController {
     public TextField X_changer;
     @FXML
     public TextField step_changer;
+    @FXML
+    public TextField n0_changer;
+    @FXML
+    public TextField N_changer;
     // Anchor pane for plotting charts
     @FXML
     AnchorPane root;
@@ -59,17 +63,18 @@ public class MainController {
     }
 
     public void updateValues() {
-        String x0, y0, _X, step;
+        String x0, y0, _X, n0, N;
         x0 = x0_changer.getText();
         y0 = y0_changer.getText();
         _X = X_changer.getText();
-        step = step_changer.getText();
-        if (x0.equals("") || y0.equals("") || _X.equals("") || step.equals("")){
+        n0 = n0_changer.getText();
+        N = N_changer.getText();
+        if (x0.equals("") || y0.equals("") || _X.equals("") || N.equals("") || n0.equals("")){
             showNotFilledFormWindow();
         }
-        if (!x0.equals("") && !y0.equals("") && !_X.equals("") && !step.equals("")){
+        if (!x0.equals("") && !y0.equals("") && !_X.equals("") && !N.equals("") && !n0.equals("")){
             try {
-                ComputationalConditions computationalConditions = new ComputationalConditions(Double.parseDouble(x0), Double.parseDouble(y0), Double.parseDouble(_X), Double.parseDouble(step));
+                ComputationalConditions computationalConditions = new ComputationalConditions(Double.parseDouble(x0), Double.parseDouble(y0), Double.parseDouble(_X), Integer.parseInt(n0), Integer.parseInt(N));
                 eulerMethod = new EulerMethod(computationalConditions);
                 improvedEulerMethod = new ImprovedEulerMethod(computationalConditions);
                 exactMethod = new ExactMethod(computationalConditions);
