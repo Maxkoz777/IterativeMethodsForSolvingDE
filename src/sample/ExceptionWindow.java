@@ -24,6 +24,11 @@ public class ExceptionWindow {
         dialogStage.close();
     }
 
+    public void notFilledForm() {
+        TextArea.setText(text.NOT_FULLY_FILLED_FORM.getMessage());
+        dialogStage.show();
+    }
+
     enum text{
         NOT_FULLY_FILLED_FORM("You should fill each row\n" +
                 "to apply changes to charts"),

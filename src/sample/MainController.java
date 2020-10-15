@@ -64,6 +64,9 @@ public class MainController {
         y0 = y0_changer.getText();
         _X = X_changer.getText();
         step = step_changer.getText();
+        if (x0.equals("") || y0.equals("") || _X.equals("") || step.equals("")){
+            showNotFilledFormWindow();
+        }
         if (!x0.equals("") && !y0.equals("") && !_X.equals("") && !step.equals("")){
             try {
                 ComputationalConditions computationalConditions = new ComputationalConditions(Double.parseDouble(x0), Double.parseDouble(y0), Double.parseDouble(_X), Double.parseDouble(step));
@@ -79,6 +82,10 @@ public class MainController {
                 showIncorrectInputWindow();
             }
         }
+    }
+
+    private void showNotFilledFormWindow() {
+        main.exceptionWindow.notFilledForm();
     }
 
     private void showIncorrectInputWindow() {
