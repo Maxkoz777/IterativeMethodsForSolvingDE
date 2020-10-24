@@ -20,6 +20,7 @@
                 <items>
                     <MenuItem mnemonicParsing="false" onAction="#loadSolutions" text="Solutions" />
                     <MenuItem mnemonicParsing="false" onAction="#loadErrors" text="Errors" />
+               <MenuItem mnemonicParsing="false" onAction="#loadTotalErrors" text="max errors" />
                 </items>
             </MenuButton>
             <AnchorPane fx:id="root" layoutX="14.0" layoutY="44.0" prefHeight="341.0" prefWidth="558.0" />

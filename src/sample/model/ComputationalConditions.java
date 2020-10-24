@@ -15,7 +15,7 @@ public class ComputationalConditions {
         y0 = 0;
         _X = 8;
         N = 7;
-        n0 = 1;
+        n0 = 2;
         step = Math.abs(N);
         h = Math.abs(_X - x0) / step;
         c = 0;
@@ -40,10 +40,6 @@ public class ComputationalConditions {
         return y0;
     }
 
-    public double get_X() {
-        return _X;
-    }
-
     public double getStep() {
         return step;
     }
@@ -54,5 +50,21 @@ public class ComputationalConditions {
 
     public double getC() {
         return c;
+    }
+
+    public int getN0() {
+        return n0;
+    }
+
+    public double get_X() {
+        return _X;
+    }
+
+    public int getN() {
+        return N;
+    }
+
+    public void setN(int n) {
+        N = n;
     }
 }

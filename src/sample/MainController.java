@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.chart.*;
@@ -24,8 +25,6 @@ public class MainController {
     @FXML
     public TextField X_changer;
     @FXML
-    public TextField step_changer;
-    @FXML
     public TextField n0_changer;
     @FXML
     public TextField N_changer;
@@ -40,6 +39,7 @@ public class MainController {
 
     LineChart<Number, Number> solutionChart;
     BarChart<String, Number> errorChart;
+    LineChart<Number, Number> totalErrorChart;
 
     private Main main;
 
@@ -50,6 +50,7 @@ public class MainController {
     public void loadErrors() {
         solutionChart.setVisible(false);
         errorChart.setVisible(true);
+        totalErrorChart.setVisible(false);
     }
 
     /**
@@ -61,6 +62,10 @@ public class MainController {
     public void setMain(Main main) {
         this.main = main;
     }
+
+    /**
+     * after applying changes all variables for each method are reinstated
+     */
 
     public void updateValues() {
         String x0, y0, _X, n0, N;
@@ -74,13 +79,15 @@ public class MainController {
         }
         if (!x0.equals("") && !y0.equals("") && !_X.equals("") && !N.equals("") && !n0.equals("")){
             try {
-                ComputationalConditions computationalConditions = new ComputationalConditions(Double.parseDouble(x0), Double.parseDouble(y0), Double.parseDouble(_X), Integer.parseInt(n0), Integer.parseInt(N));
+                ComputationalConditions computationalConditions = new ComputationalConditions(Double.parseDouble(x0),
+                        Double.parseDouble(y0), Double.parseDouble(_X), Integer.parseInt(n0), Integer.parseInt(N));
                 eulerMethod = new EulerMethod(computationalConditions);
                 improvedEulerMethod = new ImprovedEulerMethod(computationalConditions);
                 exactMethod = new ExactMethod(computationalConditions);
                 rungeKuttaMethod = new RungeKuttaMethod(computationalConditions);
                 solutionChart.getData().clear();
                 errorChart.getData().clear();
+                totalErrorChart.getData().clear();
                 setDataOnCharts();
             }
             catch (NumberFormatException exception){
@@ -107,19 +114,29 @@ public class MainController {
         solutionChart.setTitle("Solutions");
 
         final CategoryAxis xAxis1 = new CategoryAxis();
-        xAxis.setLabel("x");
+        xAxis1.setLabel("x");
         final NumberAxis yAxis1 = new NumberAxis();
-        yAxis.setLabel("errors");
+        yAxis1.setLabel("errors");
         errorChart = new BarChart<>(xAxis1, yAxis1);
         errorChart.setTitle("Errors");
         errorChart.setPadding(new Insets(0, 0, 50, 0));
+
+        final NumberAxis xAxis2 = new NumberAxis();
+        xAxis2.setLabel("step number");
+        final NumberAxis yAxis2 = new NumberAxis();
+        yAxis2.setLabel("error");
+        totalErrorChart = new LineChart<>(xAxis2, yAxis2);
+        totalErrorChart.setPadding(new Insets(0, 0, 50, 0));
+        totalErrorChart.setTitle("Max errors");
     }
 
     public void setDataOnCharts(){
         solutionChart.getData().addAll(eulerMethod.getLineChart(), improvedEulerMethod.getLineChart(), exactMethod.getLineChart(), rungeKuttaMethod.getLineChart());
         errorChart.getData().addAll(eulerMethod.getBarChart(exactMethod), improvedEulerMethod.getBarChart(exactMethod), rungeKuttaMethod.getBarChart(exactMethod));
+        totalErrorChart.getData().addAll(eulerMethod.getTotalErrorChart(), improvedEulerMethod.getTotalErrorChart(), rungeKuttaMethod.getTotalErrorChart());
         solutionChart.setVisible(false);
         errorChart.setVisible(false);
+        totalErrorChart.setVisible(false);
     }
 
     /**
@@ -128,12 +145,13 @@ public class MainController {
 
     public void loadSolutions() {
         solutionChart.setVisible(true);
+        totalErrorChart.setVisible(false);
         errorChart.setVisible(false);
     }
 
     private void createCharts(){
         setDataOnCharts();
-        root.getChildren().setAll(solutionChart, errorChart);
+        root.getChildren().setAll(solutionChart, errorChart, totalErrorChart);
     }
 
     public void initialize() {
@@ -154,6 +172,13 @@ public class MainController {
         rungeKuttaMethod = new RungeKuttaMethod();
         solutionChart.getData().clear();
         errorChart.getData().clear();
+        totalErrorChart.getData().clear();
         setDataOnCharts();
+    }
+
+    public void loadTotalErrors() {
+        solutionChart.setVisible(false);
+        totalErrorChart .setVisible(true);
+        errorChart.setVisible(false);
     }
 }
