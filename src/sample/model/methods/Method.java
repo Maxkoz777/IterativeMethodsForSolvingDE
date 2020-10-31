@@ -23,6 +23,7 @@ public abstract class Method {
     public Method(MethodName methodName) {
         this();
         this.name = methodName.name();
+        fullFillStorage();
     }
 
     public Method(){

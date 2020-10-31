@@ -27,7 +27,7 @@ public class Main extends Application {
 
         FXMLLoader windowLoader = new FXMLLoader();
         windowLoader.setLocation(Main.class.getResource("ExceptionWindow.fxml"));
-        Parent dialogRoot = windowLoader.load();
+        windowLoader.load();
         exceptionWindow = windowLoader.getController();
         exceptionWindow.setMain(this);
 
