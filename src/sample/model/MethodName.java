@@ -7,6 +7,10 @@ public enum MethodName {
     RUNGE_KUTTA("Runge-Kutta method");
     private String name;
 
+    public String getName() {
+        return name;
+    }
+
     MethodName(String name) {
         this.name = name;
     }

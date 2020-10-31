@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,8 +11,6 @@ public class ExceptionWindow {
     @FXML
     public AnchorPane dialogScene;
     private Stage dialogStage;
-
-    private Main main;
 
     @FXML
     public Button OKButton;
@@ -29,7 +26,7 @@ public class ExceptionWindow {
         dialogStage.show();
     }
 
-    enum text{
+    enum text {
         NOT_FULLY_FILLED_FORM("You should fill each row\n" +
                 "to apply changes to charts"),
         INCORRECT_NUMBER_FORMAT("x0, y0, X should be real numbers\n" +
@@ -46,25 +43,16 @@ public class ExceptionWindow {
         }
     }
 
-    public Stage getStage() {
-        return dialogStage;
+    public void setMain() {
     }
 
-    public Main getMain() {
-        return main;
-    }
-
-    public void setMain(Main main) {
-        this.main = main;
-    }
-
-    public void incorrectNumbers(){
+    public void incorrectNumbers() {
         TextArea.setText(text.INCORRECT_NUMBER_FORMAT.getMessage());
         dialogStage.show();
     }
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         dialogStage = new Stage();
         dialogStage.setScene(new Scene(dialogScene));
     }

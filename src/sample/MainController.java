@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.chart.BarChart;
@@ -142,27 +141,24 @@ public class MainController {
         solutionChart.getData().clear();
         errorChart.getData().clear();
         totalErrorChart.getData().clear();
-        if (displayEuler.isSelected()){
+        if (displayEuler.isSelected()) {
             solutionChart.getData().add(eulerMethod.getLineChart());
             errorChart.getData().add(eulerMethod.getBarChart(exactMethod));
             totalErrorChart.getData().add(eulerMethod.getTotalErrorChart());
         }
-        if (displayImproved.isSelected()){
+        if (displayImproved.isSelected()) {
             solutionChart.getData().add(improvedEulerMethod.getLineChart());
             errorChart.getData().add(improvedEulerMethod.getBarChart(exactMethod));
             totalErrorChart.getData().add(improvedEulerMethod.getTotalErrorChart());
         }
-        if (displayRK.isSelected()){
+        if (displayRK.isSelected()) {
             solutionChart.getData().add(rungeKuttaMethod.getLineChart());
             errorChart.getData().add(rungeKuttaMethod.getBarChart(exactMethod));
             totalErrorChart.getData().add(rungeKuttaMethod.getTotalErrorChart());
         }
-        if (displayExact.isSelected()){
+        if (displayExact.isSelected()) {
             solutionChart.getData().add(exactMethod.getLineChart());
         }
-//        solutionChart.getData().addAll(eulerMethod.getLineChart(), improvedEulerMethod.getLineChart(), exactMethod.getLineChart(), rungeKuttaMethod.getLineChart());
-//        errorChart.getData().addAll(eulerMethod.getBarChart(exactMethod), improvedEulerMethod.getBarChart(exactMethod), rungeKuttaMethod.getBarChart(exactMethod));
-//        totalErrorChart.getData().addAll(eulerMethod.getTotalErrorChart(), improvedEulerMethod.getTotalErrorChart(), rungeKuttaMethod.getTotalErrorChart());
         solutionChart.setVisible(false);
         errorChart.setVisible(false);
         totalErrorChart.setVisible(false);

@@ -22,7 +22,7 @@ public abstract class Method {
 
     public Method(MethodName methodName) {
         this();
-        this.name = methodName.name();
+        this.name = methodName.getName();
         fullFillStorage();
     }
 
@@ -33,13 +33,13 @@ public abstract class Method {
     public Method(ComputationalConditions conditions) {
         this.conditions = conditions;
         if (EulerMethod.class.equals(this.getClass())) {
-            name = MethodName.EULER.name();
+            name = MethodName.EULER.getName();
         } else if (ImprovedEulerMethod.class.equals(this.getClass())) {
-            name = MethodName.IMPROVED_EULER.name();
+            name = MethodName.IMPROVED_EULER.getName();
         } else if (RungeKuttaMethod.class.equals(this.getClass())) {
-            name = MethodName.RUNGE_KUTTA.name();
+            name = MethodName.RUNGE_KUTTA.getName();
         } else {
-            name = MethodName.COMMON.name();
+            name = MethodName.COMMON.getName();
         }
     }
 
@@ -133,13 +133,13 @@ public abstract class Method {
      */
 
     private Method getMethodTypeByName(String name, ComputationalConditions conditions) {
-        if (name.equals(MethodName.EULER.name())){
+        if (name.equals(MethodName.EULER.getName())){
             return new EulerMethod(conditions);
         }
-        else if (name.equals(MethodName.IMPROVED_EULER.name())){
+        else if (name.equals(MethodName.IMPROVED_EULER.getName())){
             return new ImprovedEulerMethod(conditions);
         }
-        else if (name.equals(MethodName.RUNGE_KUTTA.name())){
+        else if (name.equals(MethodName.RUNGE_KUTTA.getName())){
             return new RungeKuttaMethod(conditions);
         }
         else return new ExactMethod(conditions);

@@ -29,7 +29,6 @@ public class Main extends Application {
         windowLoader.setLocation(Main.class.getResource("ExceptionWindow.fxml"));
         windowLoader.load();
         exceptionWindow = windowLoader.getController();
-        exceptionWindow.setMain(this);
 
         mainScene = new Scene(root, 800, 400);
         primaryStage.setScene(mainScene);
