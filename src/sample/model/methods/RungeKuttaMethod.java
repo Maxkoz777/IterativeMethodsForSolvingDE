@@ -1,8 +1,8 @@
 package sample.model.methods;
 
-import sample.model.ComputationalConditions;
-import sample.model.Coordinate;
-import sample.model.MethodName;
+import sample.model.util.ComputationalConditions;
+import sample.model.util.Coordinate;
+import sample.model.util.MethodName;
 
 import java.util.ArrayList;
 

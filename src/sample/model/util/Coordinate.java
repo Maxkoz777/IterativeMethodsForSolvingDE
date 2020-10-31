@@ -1,4 +1,4 @@
-package sample.model;
+package sample.model.util;
 
 public class Coordinate implements Comparable<Coordinate>{
     private double x;

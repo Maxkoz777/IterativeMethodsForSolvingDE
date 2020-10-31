@@ -1,9 +1,9 @@
 package sample.model.methods;
 
 import javafx.scene.chart.XYChart;
-import sample.model.ComputationalConditions;
-import sample.model.Coordinate;
-import sample.model.MethodName;
+import sample.model.util.ComputationalConditions;
+import sample.model.util.Coordinate;
+import sample.model.util.MethodName;
 import sample.model.storage.ArrayStorage;
 import sample.model.storage.Storage;
 
@@ -150,4 +150,11 @@ public abstract class Method {
      */
 
     abstract void fullFillStorage();
+
+    public static class Restrictions{
+        public static boolean inDomain(double x){
+            return x > 0;
+        }
+    }
+
 }

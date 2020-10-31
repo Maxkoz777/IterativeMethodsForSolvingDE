@@ -1,22 +1,15 @@
 package sample.model.storage;
 
-import sample.model.Coordinate;
+import sample.model.util.Coordinate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Storage {
-    private List<Coordinate> coordinates = new ArrayList<>();
+    protected List<Coordinate> coordinates;
 
-    public List<Coordinate> getCoordinates() {
-        return coordinates;
-    }
+    public abstract List<Coordinate> getCoordinates();
 
-    public void setCoordinates(List<Coordinate> coordinates) {
-        this.coordinates = coordinates;
-    }
+    public abstract void setCoordinates(List<Coordinate> coordinates);
 
-    public void clear(){
-        coordinates.clear();
-    }
+    public abstract void clear();
 }

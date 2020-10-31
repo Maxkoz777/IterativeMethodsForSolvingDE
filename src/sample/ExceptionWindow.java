@@ -30,7 +30,9 @@ public class ExceptionWindow {
         NOT_FULLY_FILLED_FORM("You should fill each row\n" +
                 "to apply changes to charts"),
         INCORRECT_NUMBER_FORMAT("x0, y0, X should be real numbers\n" +
-                "n0 and N are integer numbers");
+                "n0 and N are integer numbers"),
+        INCORRECT_DOMAIN_OF_FUNCTION("x0 should be changed\n" +
+                "Domain of the function: (0; +∞)");
 
         private final String message;
 
@@ -44,6 +46,11 @@ public class ExceptionWindow {
     }
 
     public void setMain() {
+    }
+
+    public void wrongDomain(){
+        TextArea.setText(text.INCORRECT_DOMAIN_OF_FUNCTION.getMessage());
+        dialogStage.show();
     }
 
     public void incorrectNumbers() {

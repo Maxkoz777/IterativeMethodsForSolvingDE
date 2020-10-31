@@ -10,11 +10,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import sample.model.ComputationalConditions;
-import sample.model.methods.EulerMethod;
-import sample.model.methods.ExactMethod;
-import sample.model.methods.ImprovedEulerMethod;
-import sample.model.methods.RungeKuttaMethod;
+import sample.model.methods.*;
+import sample.model.util.ComputationalConditions;
 
 public class MainController {
 
@@ -85,22 +82,31 @@ public class MainController {
         _X = X_changer.getText();
         n0 = n0_changer.getText();
         N = N_changer.getText();
+        ComputationalConditions computationalConditions;
         if (x0.equals("") || y0.equals("") || _X.equals("") || N.equals("") || n0.equals("")) {
             showNotFilledFormWindow();
+            return;
         }
-        if (!x0.equals("") && !y0.equals("") && !_X.equals("") && !N.equals("") && !n0.equals("")) {
-            try {
-                ComputationalConditions computationalConditions = new ComputationalConditions(Double.parseDouble(x0),
-                        Double.parseDouble(y0), Double.parseDouble(_X), Integer.parseInt(n0), Integer.parseInt(N));
-                eulerMethod = new EulerMethod(computationalConditions);
-                improvedEulerMethod = new ImprovedEulerMethod(computationalConditions);
-                exactMethod = new ExactMethod(computationalConditions);
-                rungeKuttaMethod = new RungeKuttaMethod(computationalConditions);
-                setDataOnCharts();
-            } catch (NumberFormatException exception) {
-                showIncorrectInputWindow();
-            }
+        try {
+            computationalConditions = new ComputationalConditions(Double.parseDouble(x0),
+                    Double.parseDouble(y0), Double.parseDouble(_X), Integer.parseInt(n0), Integer.parseInt(N));
+        } catch (NumberFormatException exception) {
+            showIncorrectInputWindow();
+            return;
         }
+        if (!Method.Restrictions.inDomain(Double.parseDouble(x0))){
+            showNotInDomainWindow();
+            return;
+        }
+        eulerMethod = new EulerMethod(computationalConditions);
+        improvedEulerMethod = new ImprovedEulerMethod(computationalConditions);
+        exactMethod = new ExactMethod(computationalConditions);
+        rungeKuttaMethod = new RungeKuttaMethod(computationalConditions);
+        setDataOnCharts();
+    }
+
+    private void showNotInDomainWindow() {
+        main.exceptionWindow.wrongDomain();
     }
 
     private void showNotFilledFormWindow() {
