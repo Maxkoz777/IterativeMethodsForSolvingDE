@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -48,7 +49,7 @@ public class ExceptionWindow {
     public void setMain() {
     }
 
-    public void wrongDomain(){
+    public void wrongDomain() {
         TextArea.setText(text.INCORRECT_DOMAIN_OF_FUNCTION.getMessage());
         dialogStage.show();
     }
@@ -62,5 +63,6 @@ public class ExceptionWindow {
     private void initialize() {
         dialogStage = new Stage();
         dialogStage.setScene(new Scene(dialogScene));
+        dialogStage.getIcons().add(new Image("file:resources/images/icon/IconForApp.png"));
     }
 }

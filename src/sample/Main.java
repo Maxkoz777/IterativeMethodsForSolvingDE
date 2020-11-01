@@ -20,7 +20,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("Comparison of Numerical methods for solving DE");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("\\view\\MainPage.fxml"));
         Parent root = loader.load();
