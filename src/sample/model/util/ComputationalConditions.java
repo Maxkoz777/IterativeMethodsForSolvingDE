@@ -29,7 +29,7 @@ public class ComputationalConditions {
         this.N = N;
         this.step = Math.abs(N);
         h = Math.abs(_X - x0) / step;
-        c = 0;
+        c = Math.exp(-y0 / x0) - x0;
     }
 
     public double getX0() {
