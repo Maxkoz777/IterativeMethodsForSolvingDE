@@ -26,11 +26,19 @@ public class ImprovedEulerMethod extends Method {
         // so complexity is O(n), but not O(n^2), so does py
         for (int i = 1; i < conditions.getStep(); i++) {
             double x = px + h;
-            double y = py + h * f(px + h/2, py + h / 2 * f(px, py));
+            double y = py + h / 2 * (f(px, py) + f(x, py + h * f(px, py)));
             coordinates.add(new Coordinate(x, y));
             px = x;
             py = y;
         }
         storage.setCoordinates(coordinates);
+    }
+
+    @Override
+    double functionForLocalError(int i, double y_exact) {
+        double x = storage.getCoordinates().get(i - 1).getX();
+        double x_next = storage.getCoordinates().get(i).getX();
+        double h = conditions.getH();
+        return h / 2 * (f(x, y_exact) + f(x_next, y_exact + h * f(x, y_exact)));
     }
 }

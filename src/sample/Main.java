@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import sample.controller.ExceptionWindow;
+import sample.controller.MainController;
 
 import java.io.IOException;
 
@@ -20,13 +22,13 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("AddressApp");
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("MainPage.fxml"));
+        loader.setLocation(Main.class.getResource("\\view\\MainPage.fxml"));
         Parent root = loader.load();
         appController = loader.getController();
         appController.setMain(this);
 
         FXMLLoader windowLoader = new FXMLLoader();
-        windowLoader.setLocation(Main.class.getResource("ExceptionWindow.fxml"));
+        windowLoader.setLocation(Main.class.getResource("\\view\\ExceptionWindow.fxml"));
         windowLoader.load();
         exceptionWindow = windowLoader.getController();
 

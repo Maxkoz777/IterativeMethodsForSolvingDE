@@ -28,4 +28,9 @@ public class ExactMethod extends Method{
         }
         storage.setCoordinates(coordinates);
     }
+
+    @Override
+    double functionForLocalError(int i, double y_exact) {
+        return 0;
+    }
 }

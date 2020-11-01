@@ -72,11 +72,18 @@ public abstract class Method {
         fullFillStorage();
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName(name);
-        for (int i = 0; i < conditions.getStep(); i++) {
+        series.getData().add(new XYChart.Data<>("" + 0, 0));
+        for (int i = 1; i < conditions.getStep(); i++) {
             double x = storage.getCoordinates().get(i).getX();
-            series.getData().add(new XYChart.Data<>("" + x, getError(exactMethod, i)));
+            series.getData().add(new XYChart.Data<>("" + x, computeLocalError(exactMethod, i)));
         }
         return series;
+    }
+
+    private double computeLocalError(ExactMethod method, int i){
+        double y0 = method.storage.getCoordinates().get(i).getY();
+        double y1 = method.storage.getCoordinates().get(i - 1).getY();
+        return Math.abs(y0 - y1 - functionForLocalError(i, y1));
     }
 
     /**
@@ -150,6 +157,8 @@ public abstract class Method {
      */
 
     abstract void fullFillStorage();
+
+    abstract double functionForLocalError(int i, double y_exact);
 
     public static class Restrictions{
         public static boolean inDomain(double x){

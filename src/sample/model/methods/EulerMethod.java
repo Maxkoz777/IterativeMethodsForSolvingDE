@@ -33,4 +33,10 @@ public class EulerMethod extends Method {
         }
         storage.setCoordinates(coordinates);
     }
+
+    @Override
+    double functionForLocalError(int i, double y_exact) {
+        double x = storage.getCoordinates().get(i - 1).getX();
+        return conditions.getH() * f(x, y_exact);
+    }
 }

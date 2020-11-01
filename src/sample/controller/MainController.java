@@ -1,4 +1,4 @@
-package sample;
+package sample.controller;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -10,6 +10,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import sample.Main;
 import sample.model.methods.*;
 import sample.model.util.ComputationalConditions;
 
@@ -129,9 +130,9 @@ public class MainController {
         final CategoryAxis xAxis1 = new CategoryAxis();
         xAxis1.setLabel("x");
         final NumberAxis yAxis1 = new NumberAxis();
-        yAxis1.setLabel("errors");
+        yAxis1.setLabel("error");
         errorChart = new BarChart<>(xAxis1, yAxis1);
-        errorChart.setTitle("Errors");
+        errorChart.setTitle("LTE");
         errorChart.setPadding(new Insets(0, 0, 50, 0));
 
         final NumberAxis xAxis2 = new NumberAxis();
@@ -140,7 +141,7 @@ public class MainController {
         yAxis2.setLabel("error");
         totalErrorChart = new LineChart<>(xAxis2, yAxis2);
         totalErrorChart.setPadding(new Insets(0, 0, 50, 0));
-        totalErrorChart.setTitle("Max errors");
+        totalErrorChart.setTitle("Global Errors");
     }
 
     public void setDataOnCharts() {

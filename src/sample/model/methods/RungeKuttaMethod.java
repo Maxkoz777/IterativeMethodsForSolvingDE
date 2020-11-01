@@ -27,15 +27,26 @@ public class RungeKuttaMethod extends Method {
 
         for (int i = 1; i < conditions.getStep(); i++) {
             double x = px + h;
-            double k1 = f(px, py);
-            double k2 = f(px + h / 2, py + h * k1 / 2);
-            double k3 = f(px + h / 2, py + h * k2 / 2);
-            double k4 = f(px + h, py + h * k3);
-            double y = py + h / 6 * (k1 + 2 * k2 + 2 * k3 + k4);
+            double y = py + computationalFunction(px, py, h);
             coordinates.add(new Coordinate(x, y));
             px = x;
             py = y;
         }
         storage.setCoordinates(coordinates);
+    }
+
+    @Override
+    double functionForLocalError(int i, double y_exact) {
+        double x = storage.getCoordinates().get(i - 1).getX();
+        double h = conditions.getH();
+        return computationalFunction(x, y_exact, h);
+    }
+
+    private double computationalFunction(double x, double y, double h){
+        double k1 = f(x, y);
+        double k2 = f(x + h / 2, y + h * k1 / 2);
+        double k3 = f(x + h / 2, y + h * k2 / 2);
+        double k4 = f(x + h, y + h * k3);
+        return h / 6 * (k1 + 2 * k2 + 2 * k3 + k4);
     }
 }
