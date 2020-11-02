@@ -22,12 +22,12 @@ public class ExceptionWindow {
         dialogStage.close();
     }
 
-    public void notFilledForm() {
+    protected void notFilledForm() {
         TextArea.setText(text.NOT_FULLY_FILLED_FORM.getMessage());
         dialogStage.show();
     }
 
-    enum text {
+    private enum text {
         NOT_FULLY_FILLED_FORM("You should fill each row\n" +
                 "to apply changes to charts"),
         INCORRECT_NUMBER_FORMAT("x0, y0, X should be real numbers\n" +
@@ -46,15 +46,12 @@ public class ExceptionWindow {
         }
     }
 
-    public void setMain() {
-    }
-
-    public void wrongDomain() {
+    protected void wrongDomain() {
         TextArea.setText(text.INCORRECT_DOMAIN_OF_FUNCTION.getMessage());
         dialogStage.show();
     }
 
-    public void incorrectNumbers() {
+    protected void incorrectNumbers() {
         TextArea.setText(text.INCORRECT_NUMBER_FORMAT.getMessage());
         dialogStage.show();
     }

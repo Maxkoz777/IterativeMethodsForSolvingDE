@@ -41,14 +41,14 @@ public class MainController {
     @FXML
     AnchorPane root;
 
-    EulerMethod eulerMethod;
-    ImprovedEulerMethod improvedEulerMethod;
-    ExactMethod exactMethod;
-    RungeKuttaMethod rungeKuttaMethod;
+    private EulerMethod eulerMethod;
+    private ImprovedEulerMethod improvedEulerMethod;
+    private ExactMethod exactMethod;
+    private RungeKuttaMethod rungeKuttaMethod;
 
-    LineChart<Number, Number> solutionChart;
-    BarChart<String, Number> errorChart;
-    LineChart<Number, Number> totalErrorChart;
+    private LineChart<Number, Number> solutionChart;
+    private BarChart<String, Number> errorChart;
+    private LineChart<Number, Number> totalErrorChart;
 
     private Main main;
 
@@ -76,7 +76,7 @@ public class MainController {
      * after applying changes all variables for each method are reinstated
      */
 
-    public void updateValues() {
+    public void updateValues() throws NoSuchMethodException {
         String x0, y0, _X, n0, N;
         x0 = x0_changer.getText();
         y0 = y0_changer.getText();
@@ -118,7 +118,7 @@ public class MainController {
         main.exceptionWindow.incorrectNumbers();
     }
 
-    public void initializeGraphs() {
+    private void initializeGraphs() {
         final NumberAxis xAxis = new NumberAxis();
         xAxis.setLabel("x");
         final NumberAxis yAxis = new NumberAxis();
@@ -141,10 +141,10 @@ public class MainController {
         yAxis2.setLabel("error");
         totalErrorChart = new LineChart<>(xAxis2, yAxis2);
         totalErrorChart.setPadding(new Insets(0, 0, 50, 0));
-        totalErrorChart.setTitle("Global Errors");
+        totalErrorChart.setTitle("Total Errors");
     }
 
-    public void setDataOnCharts() {
+    private void setDataOnCharts() throws NoSuchMethodException {
         solutionChart.getData().clear();
         errorChart.getData().clear();
         totalErrorChart.getData().clear();
@@ -181,12 +181,12 @@ public class MainController {
         errorChart.setVisible(false);
     }
 
-    private void createCharts() {
+    private void createCharts() throws NoSuchMethodException {
         setDataOnCharts();
         root.getChildren().setAll(solutionChart, errorChart, totalErrorChart);
     }
 
-    public void initialize() {
+    public void initialize() throws NoSuchMethodException {
         eulerMethod = new EulerMethod();
         improvedEulerMethod = new ImprovedEulerMethod();
         exactMethod = new ExactMethod();
@@ -197,7 +197,7 @@ public class MainController {
         createCharts();
     }
 
-    public void setInitialValues() {
+    public void setInitialValues() throws NoSuchMethodException {
         eulerMethod = new EulerMethod();
         improvedEulerMethod = new ImprovedEulerMethod();
         exactMethod = new ExactMethod();
@@ -214,7 +214,7 @@ public class MainController {
         errorChart.setVisible(false);
     }
 
-    public void showProperMethods() {
+    public void showProperMethods() throws NoSuchMethodException {
         setDataOnCharts();
     }
 }

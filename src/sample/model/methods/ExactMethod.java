@@ -30,7 +30,7 @@ public class ExactMethod extends Method{
     }
 
     @Override
-    double functionForLocalError(int i, double y_exact) {
-        return 0;
+    double functionForLocalError(int i, double y_exact) throws NoSuchMethodException {
+        throw new NoSuchMethodException("Cannot count LTE for non-numerical method");
     }
 }

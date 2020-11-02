@@ -24,7 +24,6 @@ public class RungeKuttaMethod extends Method {
         coordinates.add(new Coordinate(px, py));
         // px - previous value of x, so no need to go through storage for finding it
         // so complexity is O(n), but not O(n^2), so does py
-
         for (int i = 1; i < conditions.getStep(); i++) {
             double x = px + h;
             double y = py + computationalFunction(px, py, h);
